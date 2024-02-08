@@ -24,7 +24,7 @@ public class TaskController {
 
 	@Autowired
 	TaskService service;
-	
+
 	@InitBinder
 	public void initBinderForm(WebDataBinder binder) {
 		var dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -32,7 +32,7 @@ public class TaskController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
-	@GetMapping("/menu")
+	@GetMapping()
 	public String menu() throws Exception {
 		return "menu";
 	}
@@ -84,15 +84,4 @@ public class TaskController {
 		return "deleteComp";
 	}
 
-	@GetMapping
-	public String login(Model model) {
-		return "login";
-	}
-	
-	@GetMapping("/logout")
-	public String logout() {
-		// ログイン画面に戻るようにする
-		// ログイン画面にlogoutした旨を表示する
-		return "redirect:/";
-	}
 }

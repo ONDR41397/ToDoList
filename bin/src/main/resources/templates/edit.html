@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{parts/common :: html_head()}"></head>
+<body>
+
+	<div class="container">
+
+		<h1 class="my-4 h1 text-primary">編集</h1>
+		<div class="row">
+			<div class="col-md-12">
+				<p>編集する内容を入力してください</p>
+				<form action="" method="post" th:object="${task}">
+					<p>
+						<small class="alert alert-danger" th:errors="*{title}"></small>
+					</p>
+
+					<label class="col-2 col-form-label">タイトル：</label>
+					<div class="col-10 mb-4">
+						<input class="form-control" type="text" th:field="*{title}">
+					</div>
+
+					<p>
+						<small class="alert alert-danger" th:errors="*{content}"></small>
+					</p>
+
+					<label class="col-2 col-form-label">内容：</label>
+					<div class="col-10 mb-3">
+						<textarea class="form-control" rows="2" th:field="*{content}"></textarea>
+					</div>
+					
+					<label class="col-2 col-form-label">期日：</label>
+					<div class="col-10 mb-4">
+						<input class="form-control" type="date" th:field="*{dueDate}">
+					</div>
+					<input type="submit" value="保存する" class="btn btn-primary">
+					<a th:href="@{/detail}" class="btn btn-light">キャンセル</a>
+				</form>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+	<!-- /.container -->
+	<th:block th:replace="~{parts/common :: javascripts()}"></th:block>
+</body>
+</html>

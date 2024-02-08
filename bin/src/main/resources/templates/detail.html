@@ -4,28 +4,31 @@
 <body>
 	<div class="container">
 
-		<h1 class="my-4 h1 text-primary">登録完了</h1>
+		<h1 class="my-4 h1 text-primary">登録内容一覧</h1>
 
 		<div class="row">
 			<div class="col-md-12">
+				<p>登録しているタスクの一覧です</p>
 
-				<p>以下のタスクが登録されました</p>
-
-				<table class="table table-info">
+				<table class="table table-info table-hover">
 					<thead>
 						<tr>
 							<th>タイトル</th>
 							<th>内容</th>
+							<th>期日</th>
+							<th colspan="2">操作</th>
 						</tr>
 					</thead>
-					<tr th:object="${task}">
+					<tr th:each="task : ${tasks}">
 						<td>[[${task.title}]]</td>
 						<td>[[${task.content}]]</td>
+						<td>[[${#dates.format(task.dueDate,'yyyy-MM-dd')}]]</td>
+						<td><a th:href="@{/edit/{id}(id=${task.id})}" class="btn btn-success btn-sm">編集</a></td>
+						<td><a th:href="@{/delete/{id}(id=${task.id})}" class="btn btn-danger btn-sm delete">削除</a></td>
 					</tr>
 				</table>
-
 				<p>
-					<a th:href="@{/}">メニューに戻る</a>
+					<a th:href="@{/menu}">メニューに戻る</a>
 				</p>
 			</div>
 			<!-- /.col -->

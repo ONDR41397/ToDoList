@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.app.dao.TaskDao"> 
+
+	<select id="selectAll" resultType="com.example.app.domain.Task">
+		SELECT
+		id, title, content, duedate, created
+		FROM task_list
+	</select>
+	
+	<select id="selectById" parameterType="int" resultType="com.example.app.domain.Task">
+		SELECT
+		id, title, content, duedate, created
+		FROM task_list
+		WHERE id = #{id}
+	</select>
+	
+	<select id="insert" resultType="com.example.app.domain.Task">
+		INSERT INTO task_list (title, content, duedate, created)
+		VALUES (#{title}, #{content}, #{dueDate}, NOW())
+	</select>
+	
+	<select id="update" resultType="com.example.app.domain.Task">
+		UPDATE task_list
+		SET title = #{title}, content = #{content}, duedate = #{dueDate}
+		WHERE id = #{id}
+	</select>
+	
+	<select id="delete" parameterType="int">
+		DELETE FROM task_list WHERE id = #{id}
+	</select>
+	
+</mapper>	
